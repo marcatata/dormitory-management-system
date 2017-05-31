@@ -58,11 +58,6 @@ namespace dormitory_management_system
 
 
             edit(elements.ElementAt(listBox1.SelectedIndex)); //егн
-            
-
-            //ToolStripMenuItem menuButton = (ToolStripMenuItem)sender;
-            //menuButton.Text = "Редактиране";
-            //send(sender);
         }
     }
 }

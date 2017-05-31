@@ -34,8 +34,6 @@ namespace dormitory_management_system
             {
                 add.Visible = false;
                 search.Visible = true;
-                home.Location = new Point(9, 98);
-                home.Size = new Size(home.Size.Width, ClientRectangle.Height - home.Size.Height - home.Size.Height - 9 * 3 + 2);
                 home.Visible = true;
                 bills1.Visible = false;
             }
