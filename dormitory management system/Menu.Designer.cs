@@ -58,8 +58,8 @@
             this.homeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.homeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(107, 36);
-            this.homeToolStripMenuItem.Text = " Home ";
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(93, 36);
+            this.homeToolStripMenuItem.Text = "Home";
             this.homeToolStripMenuItem.Click += new System.EventHandler(this.MenuItem_Click);
             // 
             // addToolStripMenuItem
@@ -67,8 +67,8 @@
             this.addToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.addToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(148, 36);
-            this.addToolStripMenuItem.Text = "наематели";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 36);
+            this.addToolStripMenuItem.Text = "Наематели";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.MenuItem_Click);
             // 
             // monthlyfeeToolStripMenuItem
@@ -76,16 +76,16 @@
             this.monthlyfeeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.monthlyfeeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.monthlyfeeToolStripMenuItem.Name = "monthlyfeeToolStripMenuItem";
-            this.monthlyfeeToolStripMenuItem.Size = new System.Drawing.Size(267, 36);
-            this.monthlyfeeToolStripMenuItem.Text = "мес такса (не готово)";
+            this.monthlyfeeToolStripMenuItem.Size = new System.Drawing.Size(196, 36);
+            this.monthlyfeeToolStripMenuItem.Text = "Месечни такси";
             this.monthlyfeeToolStripMenuItem.Click += new System.EventHandler(this.MenuItem_Click);
             // 
             // aboutToolStripMenuItem
-            //
+            // 
             this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.aboutToolStripMenuItem.Name = "заToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(192, 36);
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(182, 36);
             this.aboutToolStripMenuItem.Text = "за (не готово)";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.MenuItem_Click);
             // 

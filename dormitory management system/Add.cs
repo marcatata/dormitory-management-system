@@ -15,6 +15,8 @@ namespace dormitory_management_system
     {
         Color error = new Color();
 
+
+
         public Add()
         {
             InitializeComponent();
@@ -93,7 +95,7 @@ namespace dormitory_management_system
                         }
                         finally
                         {
-                            MessageBox.Show("успешно записано");
+                            MessageBox.Show("Успешно записано");
                         }
                     }
                 }
@@ -155,6 +157,36 @@ namespace dormitory_management_system
             Controls.OfType<TextBox>().ToList().ForEach(TextBox => TextBox.BackColor = Color.White);
             Controls.OfType<ComboBox>().ToList().ForEach(ComboBox => ComboBox.SelectedIndex = 0);
             lblError.Visible = false;
+        }
+
+        public void edit(string renterEGN)
+        {
+            btnRes_Click(null, null); //clear
+            using (SqlConnection cn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=dormitory;Integrated Security=True"))
+            {
+                cn.Open();
+                using (SqlCommand cmd = new SqlCommand("select * from Наематели inner join стаи on Наематели.стая_id = стаи.стая_id where ЕГН = " + renterEGN + "; ", cn))
+                {
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            txtFname.Text = dr["име"].ToString();
+                            txtSname.Text = dr["презиме"].ToString();
+                            txtLname.Text = dr["фамилия"].ToString();
+                            cbType.Text = dr["тип_на_наемател"].ToString();
+                            txtEGN.Text = dr["ЕГН"].ToString();
+                            txtContact.Text = dr["Телефонен_номер"].ToString();
+                            txtFamily.Text = dr["семеен_статус"].ToString();
+                            dtpAcc.Text = dr["ден_на_настаняване"].ToString();
+                            txtRoom.Text = dr["номер_на_стая"].ToString();
+                            txtSpec.Text = dr["специалност"].ToString();
+                            cbCourse.Text = dr["курс"].ToString();
+                            txtFnumber.Text = dr["факултетен_номер"].ToString();
+                        }
+                    }
+                }
+            }
         }
     }
 }

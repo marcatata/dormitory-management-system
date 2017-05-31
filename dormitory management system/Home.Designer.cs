@@ -75,7 +75,7 @@ namespace dormitory_management_system
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(136, 23);
             this.btnEdit.TabIndex = 128;
-            this.btnEdit.Text = "прегледай/редактирай";
+            this.btnEdit.Text = "Редактирай";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 

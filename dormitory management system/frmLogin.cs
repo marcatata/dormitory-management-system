@@ -50,9 +50,12 @@ namespace dormitory_management_system
 
             if (count == 1)
             {
-                theForm MainForm = new theForm();
                 this.Hide();
-                MainForm.Show();
+                using (theForm MainForm = new theForm())
+                {
+                    MainForm.ShowDialog();
+                }
+                this.Close();
             }
             else
             {

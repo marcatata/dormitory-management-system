@@ -20,10 +20,12 @@ namespace dormitory_management_system
         private void theForm_Load(object sender, EventArgs e)
         {
             menu.send += new Menu.customHandler(Browse);
+            home.edit += new Home.customHandler(edit);
 
             add.Visible = false;
             search.Visible = true;
             home.Visible = true;
+            bills1.Visible = false;
         }
         void Browse(object sender)
         {
@@ -35,13 +37,30 @@ namespace dormitory_management_system
                 home.Location = new Point(9, 98);
                 home.Size = new Size(home.Size.Width, ClientRectangle.Height - home.Size.Height - home.Size.Height - 9 * 3 + 2);
                 home.Visible = true;
+                bills1.Visible = false;
             }
-            else if (menuButton.Text.Contains("наематели"))
+            else if (menuButton.Text.Contains("Наематели"))
             {
                 add.Visible = true;
                 search.Visible = false;
                 home.Visible = false;
+                bills1.Visible = false;
             }
+            else if (menuButton.Text.Contains("Месечни такси"))
+            {
+                add.Visible = false;
+                search.Visible = false;
+                home.Visible = false;
+                bills1.Visible = true;
+            }
+        }
+
+        private void edit(string renterEGN)
+        {
+            add.edit(renterEGN);
+            ToolStripMenuItem menuButton = new ToolStripMenuItem();
+            menuButton.Text = "Наематели";
+            Browse(menuButton);
         }
     }
 }

@@ -32,12 +32,12 @@
             this.add = new dormitory_management_system.Add();
             this.search = new dormitory_management_system.search();
             this.home = new dormitory_management_system.Home();
+            this.bills1 = new dormitory_management_system.Bills();
             this.SuspendLayout();
-
             // 
             // menu
             // 
-            this.menu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.menu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
             this.menu.ForeColor = System.Drawing.Color.White;
@@ -49,8 +49,8 @@
             // 
             // add
             // 
-            this.add.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.add.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.add.AutoScroll = true;
             this.add.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
@@ -62,7 +62,7 @@
             // 
             // search
             // 
-            this.search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
             this.search.Location = new System.Drawing.Point(9, 44);
@@ -73,8 +73,8 @@
             // 
             // home
             // 
-            this.home.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.home.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.home.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
             this.home.Location = new System.Drawing.Point(9, 98);
@@ -82,6 +82,18 @@
             this.home.Name = "home";
             this.home.Size = new System.Drawing.Size(808, 466);
             this.home.TabIndex = 2;
+            // 
+            // bills1
+            // 
+            this.bills1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bills1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.bills1.Location = new System.Drawing.Point(9, 44);
+            this.bills1.Margin = new System.Windows.Forms.Padding(0, 9, 0, 0);
+            this.bills1.Name = "bills1";
+            this.bills1.Size = new System.Drawing.Size(808, 520);
+            this.bills1.TabIndex = 4;
             // 
             // theForm
             // 
@@ -93,6 +105,7 @@
             this.Controls.Add(this.add);
             this.Controls.Add(this.search);
             this.Controls.Add(this.home);
+            this.Controls.Add(this.bills1);
             this.Name = "theForm";
             this.Text = "theForm";
             this.Load += new System.EventHandler(this.theForm_Load);
@@ -105,5 +118,6 @@
         private Add add;
         private Home home;
         private search search;
+        private Bills bills1;
     }
 }
