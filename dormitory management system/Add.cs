@@ -14,8 +14,8 @@ namespace dormitory_management_system
     public partial class Add : UserControl
     {
         Color error = new Color();
-
-
+        Boolean bedit = false;
+        int IDnaem;
 
         public Add()
         {
@@ -70,7 +70,8 @@ namespace dormitory_management_system
                     {
                         cmd.Connection = cn;
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "INSERT INTO Наематели (тип_на_наемател, име, презиме, фамилия, ЕГН, Телефонен_номер, семеен_статус, ден_на_настаняване, специалност, курс, факултетен_номер, стая_id) VALUES ( @RenterType, @FirstName, @MiddleName, @LastName, @EGN, @ContactNumber, @FamilyStatus, @DayOfAccommodation, @Specialty, @CurrCourse, @FacultyNumber , ( select стая_id from стаи where номер_на_стая = @RoomNumber))";
+                        if (bedit == false) cmd.CommandText = "INSERT INTO Наематели (тип_на_наемател, име, презиме, фамилия, ЕГН, Телефонен_номер, семеен_статус, ден_на_настаняване, специалност, курс, факултетен_номер, стая_id) VALUES ( @RenterType, @FirstName, @MiddleName, @LastName, @EGN, @ContactNumber, @FamilyStatus, @DayOfAccommodation, @Specialty, @CurrCourse, @FacultyNumber , ( select стая_id from стаи where номер_на_стая = @RoomNumber))";
+                        else cmd.CommandText = "UPDATE Наематели SET тип_на_наемател = @RenterType, име = @FirstName, презиме = @MiddleName, фамилия = @LastName, ЕГН = @EGN, Телефонен_номер = @ContactNumber, семеен_статус = @FamilyStatus, ден_на_настаняване = @DayOfAccommodation, специалност = @Specialty, курс = @CurrCourse, факултетен_номер = @FacultyNumber, стая = ( select стая_id from стаи where номер_на_стая = @RoomNumber) WHERE наемател_id = " + IDnaem + ";";
                         cmd.Parameters.AddWithValue("@RenterType", newrenter.RenterType);
                         cmd.Parameters.AddWithValue("@FirstName", newrenter.FirstName);
                         cmd.Parameters.AddWithValue("@MiddleName", newrenter.MiddleName);
@@ -159,13 +160,13 @@ namespace dormitory_management_system
             lblError.Visible = false;
         }
 
-        public void edit(string renterEGN)
+        public void edit(int renterID)
         {
             btnRes_Click(null, null); //clear
             using (SqlConnection cn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=dormitory;Integrated Security=True"))
             {
                 cn.Open();
-                using (SqlCommand cmd = new SqlCommand("select * from Наематели inner join стаи on Наематели.стая_id = стаи.стая_id where ЕГН = " + renterEGN + "; ", cn))
+                using (SqlCommand cmd = new SqlCommand("select * from Наематели inner join стаи on Наематели.стая_id = стаи.стая_id where наемател_id = " + renterID + "; ", cn))
                 {
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -187,6 +188,8 @@ namespace dormitory_management_system
                     }
                 }
             }
+            bedit = true;
+            IDnaem = renterID;
         }
     }
 }
