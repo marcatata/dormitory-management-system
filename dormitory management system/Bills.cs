@@ -19,15 +19,9 @@ namespace dormitory_management_system
         }
 
         List<string> IDs = new List<string>(); //ID-та
-        List<int> rooms = new List<int>();
+        List<double> roomsprice = new List<double>();
         List<Bill> bills = new List<Bill>();
         Bill selectedBill = new Bill();
-        
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Bills_Load(object sender, EventArgs e)
         {
             textBox1_TextChanged(null, null);
@@ -39,14 +33,14 @@ namespace dormitory_management_system
             int currentMonth = int.Parse(DateTime.Now.ToString("MM"));
             int currentYear = int.Parse(DateTime.Now.ToString("yyyy"));
             string renterID = IDs.ElementAt(listBox1.SelectedIndex);
-            //int room = 0;
             DateTime tempDate;
+            DateTime tempDate2 = DateTime.Now;
 
 
             using (SqlConnection cn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=dormitory;Integrated Security=True"))
             {
                 cn.Open();
-                using (SqlCommand cmd = new SqlCommand(@"select ден_на_настаняване
+                using (SqlCommand cmd = new SqlCommand(@"select ден_на_настаняване, ден_на_отписване
                                                          from Наематели
                                                          where наемател_id = " + renterID + ";", cn))
                 {
@@ -55,6 +49,8 @@ namespace dormitory_management_system
                     {
                         dr.Read();
                         tempDate = Convert.ToDateTime(dr["ден_на_настаняване"].ToString());
+                        if (!DBNull.Value.Equals(dr["ден_на_отписване"]))
+                            tempDate2 = Convert.ToDateTime(dr["ден_на_отписване"].ToString());
                     }
                 }
 
@@ -79,7 +75,7 @@ namespace dormitory_management_system
                     }
                 }
             }
-            while (tempDate < DateTime.Now)
+            while (tempDate <= tempDate2)
             {
                 if (bills.Exists(x => x.month.ToString("y") == tempDate.ToString("y")))
                 {
@@ -89,7 +85,7 @@ namespace dormitory_management_system
                 {
                     listBox2.Items.Add("Неплатено - " + tempDate.ToString("y"));
                     Bill tempBill = new Bill();
-                    tempBill.month = Convert.ToDateTime( tempDate.ToString("y"));
+                    tempBill.month = Convert.ToDateTime(tempDate.ToString("y"));
 
                     bills.Add(tempBill);
                 }
@@ -107,7 +103,7 @@ namespace dormitory_management_system
             using (SqlConnection cn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=dormitory;Integrated Security=True"))
             {
                 cn.Open();
-                using (SqlCommand cmd = new SqlCommand("Select ro.номер_на_стая, re.име, re.презиме, re.фамилия, re.наемател_id from стаи ro"
+                using (SqlCommand cmd = new SqlCommand("Select ro.номер_на_стая, ro.наем, re.име, re.презиме, re.фамилия, re.ден_на_отписване, re.наемател_id from стаи ro"
                     + " inner join Наематели re on ro.стая_id = re.стая_id", cn))
                 {
                     listBox1.Items.Clear();
@@ -119,11 +115,13 @@ namespace dormitory_management_system
                             string room, renter;
                             room = dr["номер_на_стая"].ToString();
                             renter = dr["име"].ToString() + " " + dr["презиме"].ToString() + " " + dr["фамилия"].ToString();
-
+                            if (!DBNull.Value.Equals(dr["ден_на_отписване"]))
+                                renter = renter + " - напуснал";
                             if (room.Contains(textBox1.Text) || renter.Contains(textBox1.Text))
                             {
                                 listBox1.Items.Add(room + " - " + renter);
                                 IDs.Add(dr["наемател_id"].ToString());
+                                roomsprice.Add(double.Parse(dr["наем"].ToString()));
                             }
                         }
                     }
@@ -135,29 +133,34 @@ namespace dormitory_management_system
         private void button1_Click(object sender, EventArgs e)
         {
             ////плащане
-            using (SqlConnection cn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=dormitory;Integrated Security=True"))
+            if (double.Parse(textBox2.Text) < roomsprice.ElementAt(listBox1.SelectedIndex))
+                MessageBox.Show("общата сума не може да е по малка от наема за стаята", "грешка");
+            else
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlConnection cn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=dormitory;Integrated Security=True"))
                 {
-                    cmd.Connection = cn;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "insert into сметки (наемател_id, месец, сума) VALUES ( "+ IDs.ElementAt(listBox1.SelectedIndex) +",'"+ bills.ElementAt(listBox2.SelectedIndex).month.ToString("yyyy-MM-dd") +"'," + textBox2.Text+")";
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = cn;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "insert into сметки (наемател_id, месец, сума) VALUES ( " + IDs.ElementAt(listBox1.SelectedIndex) + ",'" + bills.ElementAt(listBox2.SelectedIndex).month.ToString("yyyy-MM-dd") + "'," + textBox2.Text + ")";
 
-                    try
-                    {
-                        cn.Open();
-                        int recordsAffected = cmd.ExecuteNonQuery();
+                        try
+                        {
+                            cn.Open();
+                            int recordsAffected = cmd.ExecuteNonQuery();
+                        }
+                        catch (SqlException err)
+                        {
+                            MessageBox.Show(err.Message);
+                        }
+                        finally
+                        {
+                            MessageBox.Show("Успешно записано");
+                        }
                     }
-                    catch (SqlException err)
-                    {
-                        MessageBox.Show(err.Message);
-                    }
-                    finally
-                    {
-                        MessageBox.Show("Успешно записано");
-                    }
+
                 }
-
             }
         }
 
@@ -167,9 +170,14 @@ namespace dormitory_management_system
             if (listBox2.Text.Contains("Неплатен"))
             {
                 button1.Enabled = true;
+                textBox2.Enabled = true;
+                textBox2.Text =Math.Round(roomsprice.ElementAt(listBox1.SelectedIndex),2).ToString();
             }
             else
+            {
                 button1.Enabled = false;
+                textBox2.Enabled = false;
+            }
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)

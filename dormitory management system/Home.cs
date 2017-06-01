@@ -33,6 +33,36 @@ namespace dormitory_management_system
         {
             //shows the data for the selected renter in the rich text box
             //not yet done
+            using (SqlConnection cn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=dormitory;Integrated Security=True"))
+            {
+                cn.Open();
+                using (SqlCommand cmd = new SqlCommand(@"Select re.тип_на_наемател, re.име, re.презиме,
+                    re.фамилия, re.ЕГН, re.Телефонен_номер, re.семеен_статус, re.ден_на_настаняване,
+                    re.специалност, re.курс, re.факултетен_номер, ro.номер_на_стая from Наематели re
+                    inner join Стаи ro on ro.стая_id = re.стая_id where наемател_id="+ elements.ElementAt(listBox1.SelectedIndex), cn))
+                {
+                    richTextBox1.Clear();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            richTextBox1.Text = @"тип на наемателя: " + dr["тип_на_наемател"].ToString() +
+                                "\nиме: " + dr["име"].ToString() +
+                                "\nпрезиме: " + dr["презиме"].ToString() +
+                                "\nфамилия: " + dr["фамилия"].ToString() +
+                                "\nЕГН: " + dr["ЕГН"].ToString() +
+                                "\nТелефонен номер: " + dr["телефонен_номер"].ToString() +
+                                "\nСемеен статус: " + dr["семеен_статус"].ToString() +
+                                "\nДен на настаняване: " + dr["ден_на_настаняване"].ToString() +
+                                "\nСпециалност: " + dr["специалност"].ToString() +
+                                "\nкурс: " + dr["курс"].ToString() +
+                                "\nФакултетен номер: " + dr["факултетен_номер"].ToString() +
+                                "\nНомер на стая: " + dr["номер_на_стая"].ToString();
+
+                        }
+                    }
+                }
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -57,7 +87,7 @@ namespace dormitory_management_system
                     {
                         while (dr.Read())
                         {
-                            string room, renter, left="pokijuhygtf";
+                            string room, renter, left;
                             left = dr["ден_на_отписване"].ToString();
                             if(left==""){
                                 room = dr["номер_на_стая"].ToString();
