@@ -16,6 +16,7 @@ namespace dormitory_management_system
         public long ContactNumber { set; get; }
         public string FamilyStatus { set; get; }
         public DateTime DayOfAccommodation { set; get; }
+        public DateTime DayOfLeaving { set; get; }
 
         public class CStudent
         {

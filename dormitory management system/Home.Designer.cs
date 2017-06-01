@@ -33,6 +33,8 @@ namespace dormitory_management_system
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBox1
@@ -45,8 +47,8 @@ namespace dormitory_management_system
             this.listBox1.ForeColor = System.Drawing.Color.White;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 24;
-            this.listBox1.Location = new System.Drawing.Point(7, 7);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(7, 7, 3, 7);
+            this.listBox1.Location = new System.Drawing.Point(7, 48);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(7, 3, 3, 7);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(258, 458);
             this.listBox1.TabIndex = 1;
@@ -61,36 +63,65 @@ namespace dormitory_management_system
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.ForeColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(271, 7);
+            this.richTextBox1.Location = new System.Drawing.Point(271, 48);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 7, 7, 7);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(516, 408);
+            this.richTextBox1.Size = new System.Drawing.Size(516, 425);
             this.richTextBox1.TabIndex = 126;
             this.richTextBox1.Text = "";
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(407, 425);
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEdit.Location = new System.Drawing.Point(473, 483);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(136, 23);
+            this.btnEdit.Size = new System.Drawing.Size(104, 23);
             this.btnEdit.TabIndex = 128;
             this.btnEdit.Text = "Редактирай";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(181, 7);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(606, 31);
+            this.textBox1.TabIndex = 129;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(7, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 7, 3, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(168, 31);
+            this.label1.TabIndex = 130;
+            this.label1.Text = "Търсене";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.listBox1);
             this.Name = "Home";
-            this.Size = new System.Drawing.Size(794, 472);
+            this.Size = new System.Drawing.Size(794, 526);
             this.Load += new System.EventHandler(this.Home_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -99,5 +130,7 @@ namespace dormitory_management_system
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

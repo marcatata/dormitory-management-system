@@ -23,7 +23,6 @@ namespace dormitory_management_system
             home.edit += new Home.customHandler(edit);
 
             add.Visible = false;
-            search.Visible = true;
             home.Visible = true;
             bills1.Visible = false;
         }
@@ -33,21 +32,18 @@ namespace dormitory_management_system
             if (menuButton.Text.Contains("Home"))
             {
                 add.Visible = false;
-                search.Visible = true;
                 home.Visible = true;
                 bills1.Visible = false;
             }
             else if (menuButton.Text.Contains("Наематели"))
             {
                 add.Visible = true;
-                search.Visible = false;
                 home.Visible = false;
                 bills1.Visible = false;
             }
             else if (menuButton.Text.Contains("Месечни такси"))
             {
                 add.Visible = false;
-                search.Visible = false;
                 home.Visible = false;
                 bills1.Visible = true;
             }

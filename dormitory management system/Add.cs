@@ -24,21 +24,35 @@ namespace dormitory_management_system
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cbType.Items.Add("студент");
-            cbType.Items.Add("докторант");
-            cbType.Items.Add("преподавател");
-            cbCourse.Items.Add("I");
-            cbCourse.Items.Add("II");
-            cbCourse.Items.Add("III");
-            cbCourse.Items.Add("IV");
-            cbCourse.Items.Add("V");
-            cbCourse.Items.Add("VI");
-            Controls.OfType<ComboBox>().ToList().ForEach(ComboBox => ComboBox.SelectedIndex = 0);
-            lblError.Visible = false;
+            if (!this.Visible)
+            {
+                cbType.Items.Clear();
+                cbType.Items.Add("студент");
+                cbType.Items.Add("докторант");
+                cbType.Items.Add("преподавател");
+                cbCourse.Items.Clear();
+                cbCourse.Items.Add("I");
+                cbCourse.Items.Add("II");
+                cbCourse.Items.Add("III");
+                cbCourse.Items.Add("IV");
+                cbCourse.Items.Add("V");
+                cbCourse.Items.Add("VI");
+                Controls.OfType<ComboBox>().ToList().ForEach(ComboBox => ComboBox.SelectedIndex = 0);
+                lblError.Visible = false;
+
+                panel1.Visible = false;
+                btnRes_Click(null, null); //clear
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            Button btnSender = new Button();
+            btnSender = (Button)sender;
+            bool leaving = false;
+            if (btnSender.Text == "Отписване")
+                leaving = true;
+
             if (isValid())
             {
                 CRenter newrenter = new CRenter();
@@ -70,20 +84,32 @@ namespace dormitory_management_system
                     {
                         cmd.Connection = cn;
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "INSERT INTO Наематели (тип_на_наемател, име, презиме, фамилия, ЕГН, Телефонен_номер, семеен_статус, ден_на_настаняване, специалност, курс, факултетен_номер, стая_id) VALUES ( @RenterType, @FirstName, @MiddleName, @LastName, @EGN, @ContactNumber, @FamilyStatus, @DayOfAccommodation, @Specialty, @CurrCourse, @FacultyNumber , ( select стая_id from стаи where номер_на_стая = @RoomNumber))";
-                        cmd.Parameters.AddWithValue("@RenterType", newrenter.RenterType);
-                        cmd.Parameters.AddWithValue("@FirstName", newrenter.FirstName);
-                        cmd.Parameters.AddWithValue("@MiddleName", newrenter.MiddleName);
-                        cmd.Parameters.AddWithValue("@LastName", newrenter.LastName);
-                        cmd.Parameters.AddWithValue("@EGN", newrenter.EGN);
-                        cmd.Parameters.AddWithValue("@ContactNumber", newrenter.ContactNumber);
-                        cmd.Parameters.AddWithValue("@FamilyStatus", newrenter.FamilyStatus);
-                        cmd.Parameters.AddWithValue("@DayOfAccommodation", newrenter.DayOfAccommodation);
-                        cmd.Parameters.AddWithValue("@Specialty", newrenter.student.Specialty);
-                        cmd.Parameters.AddWithValue("@CurrCourse", newrenter.student.CurrCourse);
-                        cmd.Parameters.AddWithValue("@FacultyNumber", newrenter.student.FacultyNumber);
-                        cmd.Parameters.AddWithValue("@RoomNumber", room.RoomNumber);
+                        if (leaving)
+                        {
+                            //create bills before leaving
 
+                            //
+                            cmd.CommandText += "update Наематели set ден_на_отписване = '" + dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + "' where ЕГН = @EGN;";
+                            cmd.Parameters.AddWithValue("@EGN", newrenter.EGN);
+                            
+                        }
+                        else
+                        {
+                            cmd.CommandText = "INSERT INTO Наематели (тип_на_наемател, име, презиме, фамилия, ЕГН, Телефонен_номер, семеен_статус, ден_на_настаняване, специалност, курс, факултетен_номер, стая_id) VALUES ( @RenterType, @FirstName, @MiddleName, @LastName, @EGN, @ContactNumber, @FamilyStatus, @DayOfAccommodation, @Specialty, @CurrCourse, @FacultyNumber , ( select стая_id from стаи where номер_на_стая = @RoomNumber))" +
+                                "INSERT INTO сметки (наемател_id, начална_дата, крайна_дата, сума, платено) VALUES ((select наемател_id from Наематели where ЕГН = @EGN), @DayOfAccommodation, EOMONTH(@DayOfAccommodation), (select наем from стаи where номер_на_стая = @RoomNumber), 0)";
+                            cmd.Parameters.AddWithValue("@RenterType", newrenter.RenterType);
+                            cmd.Parameters.AddWithValue("@FirstName", newrenter.FirstName);
+                            cmd.Parameters.AddWithValue("@MiddleName", newrenter.MiddleName);
+                            cmd.Parameters.AddWithValue("@LastName", newrenter.LastName);
+                            cmd.Parameters.AddWithValue("@EGN", newrenter.EGN);
+                            cmd.Parameters.AddWithValue("@ContactNumber", newrenter.ContactNumber);
+                            cmd.Parameters.AddWithValue("@FamilyStatus", newrenter.FamilyStatus);
+                            cmd.Parameters.AddWithValue("@DayOfAccommodation", newrenter.DayOfAccommodation);
+                            cmd.Parameters.AddWithValue("@Specialty", newrenter.student.Specialty);
+                            cmd.Parameters.AddWithValue("@CurrCourse", newrenter.student.CurrCourse);
+                            cmd.Parameters.AddWithValue("@FacultyNumber", newrenter.student.FacultyNumber);
+                            cmd.Parameters.AddWithValue("@RoomNumber", room.RoomNumber);
+                        }
                         try
                         {
                             cn.Open();
@@ -187,6 +213,16 @@ namespace dormitory_management_system
                     }
                 }
             }
+            if (cbType.Text != "студент")
+                groupBox1.Enabled = false;
+            else
+                groupBox1.Enabled = true;
+            panel1.Visible = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            btnAdd_Click(sender, null);
         }
     }
 }

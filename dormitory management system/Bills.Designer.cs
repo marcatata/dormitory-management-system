@@ -101,6 +101,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(459, 26);
             this.textBox1.TabIndex = 7;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // listBox1
             // 
@@ -111,6 +112,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(609, 210);
             this.listBox1.TabIndex = 8;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // listBox2
             // 
@@ -121,6 +123,7 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(352, 212);
             this.listBox2.TabIndex = 8;
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -157,6 +160,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Bills";
             this.Size = new System.Drawing.Size(621, 473);
+            this.Load += new System.EventHandler(this.Bills_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);

@@ -57,14 +57,19 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRes = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(10, 37);
+            this.label1.Location = new System.Drawing.Point(9, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(432, 13);
             this.label1.TabIndex = 0;
@@ -74,7 +79,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(118, 81);
+            this.label3.Location = new System.Drawing.Point(117, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 2;
@@ -84,7 +89,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(121, 107);
+            this.label4.Location = new System.Drawing.Point(120, 81);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 3;
@@ -94,7 +99,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(125, 134);
+            this.label5.Location = new System.Drawing.Point(124, 108);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 4;
@@ -104,7 +109,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(157, 161);
+            this.label6.Location = new System.Drawing.Point(156, 135);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(24, 13);
             this.label6.TabIndex = 5;
@@ -114,7 +119,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.Control;
-            this.label7.Location = new System.Drawing.Point(153, 189);
+            this.label7.Location = new System.Drawing.Point(152, 163);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(28, 13);
             this.label7.TabIndex = 6;
@@ -124,7 +129,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.Control;
-            this.label8.Location = new System.Drawing.Point(82, 216);
+            this.label8.Location = new System.Drawing.Point(81, 190);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(99, 13);
             this.label8.TabIndex = 7;
@@ -134,7 +139,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.SystemColors.Control;
-            this.label9.Location = new System.Drawing.Point(106, 243);
+            this.label9.Location = new System.Drawing.Point(105, 217);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(75, 13);
             this.label9.TabIndex = 8;
@@ -144,7 +149,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.SystemColors.Control;
-            this.label10.Location = new System.Drawing.Point(22, 272);
+            this.label10.Location = new System.Drawing.Point(21, 246);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(159, 13);
             this.label10.TabIndex = 9;
@@ -154,7 +159,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.SystemColors.Control;
-            this.label11.Location = new System.Drawing.Point(99, 295);
+            this.label11.Location = new System.Drawing.Point(98, 269);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 10;
@@ -189,7 +194,7 @@
             // 
             // txtFname
             // 
-            this.txtFname.Location = new System.Drawing.Point(187, 78);
+            this.txtFname.Location = new System.Drawing.Point(186, 52);
             this.txtFname.Name = "txtFname";
             this.txtFname.Size = new System.Drawing.Size(280, 20);
             this.txtFname.TabIndex = 15;
@@ -197,7 +202,7 @@
             // 
             // txtSname
             // 
-            this.txtSname.Location = new System.Drawing.Point(187, 104);
+            this.txtSname.Location = new System.Drawing.Point(186, 78);
             this.txtSname.Name = "txtSname";
             this.txtSname.Size = new System.Drawing.Size(280, 20);
             this.txtSname.TabIndex = 16;
@@ -205,7 +210,7 @@
             // 
             // txtLname
             // 
-            this.txtLname.Location = new System.Drawing.Point(187, 131);
+            this.txtLname.Location = new System.Drawing.Point(186, 105);
             this.txtLname.Name = "txtLname";
             this.txtLname.Size = new System.Drawing.Size(280, 20);
             this.txtLname.TabIndex = 17;
@@ -215,7 +220,7 @@
             // 
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbType.FormattingEnabled = true;
-            this.cbType.Location = new System.Drawing.Point(187, 158);
+            this.cbType.Location = new System.Drawing.Point(186, 132);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(280, 21);
             this.cbType.TabIndex = 18;
@@ -223,7 +228,7 @@
             // 
             // txtEGN
             // 
-            this.txtEGN.Location = new System.Drawing.Point(187, 186);
+            this.txtEGN.Location = new System.Drawing.Point(186, 160);
             this.txtEGN.Name = "txtEGN";
             this.txtEGN.Size = new System.Drawing.Size(280, 20);
             this.txtEGN.TabIndex = 19;
@@ -232,7 +237,7 @@
             // 
             // txtContact
             // 
-            this.txtContact.Location = new System.Drawing.Point(187, 213);
+            this.txtContact.Location = new System.Drawing.Point(186, 187);
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(280, 20);
             this.txtContact.TabIndex = 20;
@@ -241,7 +246,7 @@
             // 
             // txtFamily
             // 
-            this.txtFamily.Location = new System.Drawing.Point(187, 240);
+            this.txtFamily.Location = new System.Drawing.Point(186, 214);
             this.txtFamily.Name = "txtFamily";
             this.txtFamily.Size = new System.Drawing.Size(280, 20);
             this.txtFamily.TabIndex = 21;
@@ -249,14 +254,14 @@
             // 
             // dtpAcc
             // 
-            this.dtpAcc.Location = new System.Drawing.Point(187, 266);
+            this.dtpAcc.Location = new System.Drawing.Point(186, 240);
             this.dtpAcc.Name = "dtpAcc";
             this.dtpAcc.Size = new System.Drawing.Size(280, 20);
             this.dtpAcc.TabIndex = 22;
             // 
             // txtRoom
             // 
-            this.txtRoom.Location = new System.Drawing.Point(187, 292);
+            this.txtRoom.Location = new System.Drawing.Point(186, 266);
             this.txtRoom.Name = "txtRoom";
             this.txtRoom.Size = new System.Drawing.Size(280, 20);
             this.txtRoom.TabIndex = 23;
@@ -272,7 +277,7 @@
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Location = new System.Drawing.Point(13, 319);
+            this.groupBox1.Location = new System.Drawing.Point(12, 293);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(462, 100);
             this.groupBox1.TabIndex = 24;
@@ -305,7 +310,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(80, 441);
+            this.btnAdd.Location = new System.Drawing.Point(79, 415);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(142, 23);
             this.btnAdd.TabIndex = 25;
@@ -315,7 +320,7 @@
             // 
             // btnRes
             // 
-            this.btnRes.Location = new System.Drawing.Point(268, 441);
+            this.btnRes.Location = new System.Drawing.Point(267, 415);
             this.btnRes.Name = "btnRes";
             this.btnRes.Size = new System.Drawing.Size(142, 23);
             this.btnRes.TabIndex = 26;
@@ -327,18 +332,57 @@
             // 
             this.lblError.AutoSize = true;
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(150, 422);
+            this.lblError.Location = new System.Drawing.Point(149, 396);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(166, 13);
             this.lblError.TabIndex = 27;
             this.lblError.Text = "моля попълнете всички полета";
             this.lblError.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(12, 444);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(462, 67);
+            this.panel1.TabIndex = 28;
+            this.panel1.Visible = false;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(174, 9);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(280, 20);
+            this.dateTimePicker1.TabIndex = 24;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(9, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 13);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Дата на отписване";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(255, 35);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(142, 23);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Отписване";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnRes);
             this.Controls.Add(this.btnAdd);
@@ -363,10 +407,13 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "Add";
-            this.Size = new System.Drawing.Size(479, 467);
+            this.Size = new System.Drawing.Size(479, 521);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.VisibleChanged += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,5 +450,9 @@
         private System.Windows.Forms.TextBox txtSpec;
         private System.Windows.Forms.Button btnRes;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label2;
     }
 }
