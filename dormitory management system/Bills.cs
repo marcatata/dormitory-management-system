@@ -161,6 +161,7 @@ namespace dormitory_management_system
                     }
 
                 }
+                textBox1_TextChanged(null, null);
             }
         }
 
