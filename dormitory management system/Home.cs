@@ -49,7 +49,7 @@ namespace dormitory_management_system
             using (SqlConnection cn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=dormitory;Integrated Security=True"))
             {
                 cn.Open();
-                using (SqlCommand cmd = new SqlCommand("Select ro.номер_на_стая, ro.макс_наематели, re.име, re.презиме, re.фамилия, re.наемател_id from стаи ro"
+                using (SqlCommand cmd = new SqlCommand("Select ro.номер_на_стая, ro.макс_наематели, re.име, re.презиме, re.фамилия, re.наемател_id, re.ден_на_отписване from стаи ro"
                     + " inner join Наематели re on ro.стая_id = re.стая_id", cn))
                 {
                     listBox1.Items.Clear();
@@ -57,14 +57,17 @@ namespace dormitory_management_system
                     {
                         while (dr.Read())
                         {
-                            string room, renter;
-                            room = dr["номер_на_стая"].ToString();
-                            renter = dr["име"].ToString() + " " + dr["презиме"].ToString() + " " + dr["фамилия"].ToString();
+                            string room, renter, left="pokijuhygtf";
+                            left = dr["ден_на_отписване"].ToString();
+                            if(left==""){
+                                room = dr["номер_на_стая"].ToString();
+                                renter = dr["име"].ToString() + " " + dr["презиме"].ToString() + " " + dr["фамилия"].ToString();
 
-                            if (room.Contains(textBox1.Text) || renter.Contains(textBox1.Text))
-                            {
-                                listBox1.Items.Add(room + " - " + renter);
-                                elements.Add(int.Parse(dr["наемател_id"].ToString()));
+                                if (room.Contains(textBox1.Text) || renter.Contains(textBox1.Text))
+                                {
+                                    listBox1.Items.Add(room + " - " + renter);
+                                    elements.Add(int.Parse(dr["наемател_id"].ToString()));
+                                }
                             }
                         }
                     }

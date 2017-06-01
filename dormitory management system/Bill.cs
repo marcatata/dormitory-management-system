@@ -8,9 +8,8 @@ namespace dormitory_management_system
 {
     class Bill
     {
-        public DateTime start { set; get; }
-        public DateTime end { set; get; }
+        public int renterID { set; get; }
+        public DateTime month { set; get; }
         public decimal sum { set; get; }
-        public bool payed { set; get; }
     }
 }

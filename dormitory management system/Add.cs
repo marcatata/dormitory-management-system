@@ -50,9 +50,6 @@ namespace dormitory_management_system
         {
             Button btnSender = new Button();
             btnSender = (Button)sender;
-            bool leaving = false;
-            if (btnSender.Text == "Отписване")
-                leaving = true;
 
             if (isValid())
             {
@@ -85,7 +82,7 @@ namespace dormitory_management_system
                     {
                         cmd.Connection = cn;
                         cmd.CommandType = CommandType.Text;
-                        if (leaving)
+                        /*if (leaving)
                         {
                             //create bills before leaving
 
@@ -95,9 +92,9 @@ namespace dormitory_management_system
                             
                         }
                         else
-                        {
+                        {*/
                             if (bedit == false) cmd.CommandText = "INSERT INTO Наематели (тип_на_наемател, име, презиме, фамилия, ЕГН, Телефонен_номер, семеен_статус, ден_на_настаняване, специалност, курс, факултетен_номер, стая_id) VALUES ( @RenterType, @FirstName, @MiddleName, @LastName, @EGN, @ContactNumber, @FamilyStatus, @DayOfAccommodation, @Specialty, @CurrCourse, @FacultyNumber , ( select стая_id from стаи where номер_на_стая = @RoomNumber))";
-                            else cmd.CommandText = "UPDATE Наематели SET тип_на_наемател = @RenterType, име = @FirstName, презиме = @MiddleName, фамилия = @LastName, ЕГН = @EGN, Телефонен_номер = @ContactNumber, семеен_статус = @FamilyStatus, ден_на_настаняване = @DayOfAccommodation, специалност = @Specialty, курс = @CurrCourse, факултетен_номер = @FacultyNumber, стая = ( select стая_id from стаи where номер_на_стая = @RoomNumber) WHERE наемател_id = " + IDnaem + ";";
+                            else cmd.CommandText = "UPDATE Наематели SET тип_на_наемател = @RenterType, име = @FirstName, презиме = @MiddleName, фамилия = @LastName, ЕГН = @EGN, Телефонен_номер = @ContactNumber, семеен_статус = @FamilyStatus, ден_на_настаняване = @DayOfAccommodation, специалност = @Specialty, курс = @CurrCourse, факултетен_номер = @FacultyNumber, стая_id = ( select стая_id from стаи where номер_на_стая = @RoomNumber) WHERE наемател_id = " + IDnaem + ";";
                             cmd.Parameters.AddWithValue("@RenterType", newrenter.RenterType);
                             cmd.Parameters.AddWithValue("@FirstName", newrenter.FirstName);
                             cmd.Parameters.AddWithValue("@MiddleName", newrenter.MiddleName);
@@ -110,7 +107,7 @@ namespace dormitory_management_system
                             cmd.Parameters.AddWithValue("@CurrCourse", newrenter.student.CurrCourse);
                             cmd.Parameters.AddWithValue("@FacultyNumber", newrenter.student.FacultyNumber);
                             cmd.Parameters.AddWithValue("@RoomNumber", room.RoomNumber);
-                        }
+                        //}
                         try
                         {
                             cn.Open();
@@ -221,11 +218,38 @@ namespace dormitory_management_system
             else
                 groupBox1.Enabled = true;
             panel1.Visible = true;
+            
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLeave_Click(object sender, EventArgs e)
         {
-            btnAdd_Click(sender, null);
+            CRenter newrenter = new CRenter();
+            CRooms room = new CRooms();
+            using (SqlConnection cn = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=dormitory;Integrated Security=True"))
+            {
+               
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = cn;
+                    cmd.CommandType = CommandType.Text;
+                    string day = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+                    cmd.CommandText = "update Наематели set ден_на_отписване = '" + day + "' where Наематели.ЕГН = " + txtEGN.Text + ";";
+                   
+                    try
+                    {
+                        cn.Open();
+                        int recordsAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException err)
+                    {
+                        MessageBox.Show(err.Message);
+                    }
+                    finally
+                    {
+                        MessageBox.Show("Успешно записано");
+                    }
+                }
+            }
         }
     }
 }
