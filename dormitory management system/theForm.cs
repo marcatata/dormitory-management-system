@@ -49,9 +49,9 @@ namespace dormitory_management_system
             }
         }
 
-        private void edit(string renterEGN)
+        private void edit(int renterID)
         {
-            add.edit(renterEGN);
+            add.edit(renterID);
             ToolStripMenuItem menuButton = new ToolStripMenuItem();
             menuButton.Text = "Наематели";
             Browse(menuButton);
